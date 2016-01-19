@@ -113,13 +113,9 @@ QUnit.test("should fill the grid (Part I)", function (assert) {
     var gameController = new TetrisGame(grid);
     gameController.fill(piece);
     assert.deepEqual(true, grid.rows[0][0], 'failed');
-    ;
     assert.deepEqual(true, grid.rows[1][0], 'failed');
-    ;
     assert.deepEqual(true, grid.rows[2][0], 'failed');
-    ;
     assert.deepEqual(true, grid.rows[3][0], 'failed');
-    ;
 });
 
 QUnit.test("should fill the grid (Part II)", function (assert) {
