@@ -1,0 +1,93 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Tetris</title>
+    <link href="style.css" rel="stylesheet" type="text/css" media="screen"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-2.2.0.min.js"></script>
+    <script type="text/javascript" src="jquery-ui.js"></script>
+    <script type="application/javascript" src="tetris.min.js"></script>
+    <script type="text/javascript" src="presenter.js"></script>
+    <script type="text/javascript">
+
+    </script>
+</head>
+<body>
+<script>
+    $(function () {
+        $("#slider-range-max").slider({
+            range: "max",
+            min: 1,
+            max: 10,
+            value: 5,
+            slide: function (event, ui) {
+                $("#amount").val(ui.value);
+            }
+        });
+        $("#amount").val($("#slider-range-max").slider("value"));
+    });
+</script>
+
+<div id="container">
+    <div id="header">
+        <h1>
+            Tetris Remake by Jarrod Folino
+        </h1>
+    </div>
+    <div id="navigation">
+        <ul>
+            <li><a id="new_game" href="#">New Game</a></li>
+            <li><a href="#">Custom Game</a></li>
+            <li><a href="#">Source Code</a></li>
+            <li><a href="#">About Me</a></li>
+        </ul>
+    </div>
+    <div id="content-container1">
+        <div id="content-container2">
+            <div id="section-navigation">
+                <ul>
+                    <li id="p1">
+
+                    </li>
+                    <li id="p2">2</li>
+                    <li id="p3">3</li>
+                    <li id="p4">4</li>
+                </ul>
+            </div>
+            <div id="content">
+
+                <div id="stats">
+                    <span id="level">Level: 0</span>
+                    <span id="score">Score: 0</span>
+                    <span id="lines">Lines Cleared: 0</span>
+                    <span id="singles">Singles: 0</span>
+                    <span id="doubles">Doubles: 0</span>
+                    <span id="triples">Triples: 0</span>
+                    <span id="tetra">Tetra: 0</span>
+
+                    <div id="graph"></div>
+                </div>
+
+                <div id="controls">
+                    <img src="play_now.png" id="play_now"/>
+
+                    <p>
+                        <label for="amount">Starting Level:</label>
+                        <input type="text" id="amount" style="border: 0; color: #3ef667; font-weight: bold;"/>
+                    </p>
+
+                    <div id="slider-range-max"></div>
+
+                </div>
+
+                <div id="grid">
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</body>
+</html>

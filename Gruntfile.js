@@ -13,7 +13,7 @@ module.exports = function (grunt) {
         browserify: {
             client: {
                 src: ['lib/tetris.js'],
-                dest: 'target/tetris.min.js',
+                dest: 'web/tetris.min.js',
                 options: {
                     browserifyOptions: {
                         standalone: 'Tetris'
