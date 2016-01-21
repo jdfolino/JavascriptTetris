@@ -39,6 +39,21 @@ module.exports = function (grunt) {
         },
         jshint: {
             all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
+        },
+        plato: {
+            code_analysis: {
+                options : {
+                    complexity : {
+                        logicalor : true,
+                        switchcase : true,
+                        forin : true,
+                        trycatch : true
+                    }
+                },
+                files: {
+                    'reports': ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
+                }
+            }
         }
     });
 
@@ -46,6 +61,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-jshint');
-    //browserify lib/tetris.js -s Tetris > target/tetris-min.js
+    grunt.loadNpmTasks('grunt-plato');
 
 };
