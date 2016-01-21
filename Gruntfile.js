@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['exec:qunit', 'browserify', 'uglify', 'exec:deploy']);
+    grunt.registerTask('default', ['exec:qunit', 'jshint', 'browserify', 'uglify', 'exec:deploy']);
     grunt.initConfig({
         exec: {
             qunit: {
@@ -36,12 +36,16 @@ module.exports = function (grunt) {
                     'target/tetris.min.js': ['target/tetris.js']
                 }
             }
+        },
+        jshint: {
+            all: ['Gruntfile.js', 'lib/**/*.js', 'test/**/*.js']
         }
     });
 
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     //browserify lib/tetris.js -s Tetris > target/tetris-min.js
 
 };

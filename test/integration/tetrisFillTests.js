@@ -1,9 +1,9 @@
 if (typeof QUnit == 'undefined') // if your tests also run in the browser...
     QUnit = require('qunit-cli');
 
-var TetrisGame = require("../../lib/tetris")
-var Grid = require("../../lib/grid")
-var LongBar = require("../../lib/pieces/longBar")
+var TetrisGame = require("../../lib/tetris");
+var Grid = require("../../lib/grid");
+var LongBar = require("../../lib/pieces/longBar");
 
 QUnit.test("should fill the grid (Part I)", function (assert) {
     var piece = new LongBar(0, 0, 0);

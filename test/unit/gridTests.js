@@ -1,7 +1,7 @@
 if (typeof QUnit == 'undefined') // if your tests also run in the browser...
     QUnit = require('qunit-cli');
 
-var Grid = require("../../lib/grid.js")
+var Grid = require("../../lib/grid.js");
 var grid = new Grid(10, 10);
 
 QUnit.test( "Grid length should be number specified", function( assert ) {

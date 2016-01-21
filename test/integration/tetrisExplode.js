@@ -1,9 +1,9 @@
 if (typeof QUnit == 'undefined') // if your tests also run in the browser...
     QUnit = require('qunit-cli');
 
-var TetrisGame = require("../../lib/tetris")
-var Grid = require("../../lib/grid")
-var LongBar = require("../../lib/pieces/longBar")
+var TetrisGame = require("../../lib/tetris");
+var Grid = require("../../lib/grid");
+var LongBar = require("../../lib/pieces/longBar");
 
 
 QUnit.test("should explode single lines", function (assert) {
@@ -14,7 +14,6 @@ QUnit.test("should explode single lines", function (assert) {
     var gameController = new TetrisGame(grid);
     gameController.explodeCompleteLines(0);
     assert.deepEqual([[false, false], [false, false]], grid.rows, 'failed');
-    ;
 });
 
 QUnit.test("should explode 2 lines", function (assert) {
@@ -26,7 +25,6 @@ QUnit.test("should explode 2 lines", function (assert) {
     var gameController = new TetrisGame(grid);
     gameController.explodeCompleteLines(0);
     assert.deepEqual([[false, false], [false, false], [false, false]], grid.rows, 'failed');
-    ;
 });
 
 QUnit.test("should explode 2 lines that are not adjacent", function (assert) {
@@ -38,7 +36,6 @@ QUnit.test("should explode 2 lines that are not adjacent", function (assert) {
     var gameController = new TetrisGame(grid);
     gameController.explodeCompleteLines(0);
     assert.deepEqual([[false, true], [false, false], [false, false]], grid.rows, 'failed');
-    ;
 });
 
 QUnit.test("should remove pieces that make a line end to end horizontally II", function (assert) {
