@@ -141,28 +141,28 @@ QUnit.test("should fill the grid (Part III)", function (assert) {
     assert.deepEqual(true, grid.rows[3][4], 'failed');
 });
 
-QUnit.test("should not let you fill the grid if any part is already filled in", function (assert) {
-    var piece = new LongBar(1, 3, 90);
-    var grid = new Grid(10, 10);
-    var gameController = new TetrisGame(grid);
-    gameController.fill(piece);
+//QUnit.test("should not let you fill the grid if any part is already filled in", function (assert) {
+//    var piece = new LongBar(1, 3, 90);
+//    var grid = new Grid(10, 10);
+//    var gameController = new TetrisGame(grid);
+//    gameController.fill(piece);
+//
+//    assert.equal(false, gameController.fill(piece), 'failed');
+//    assert.equal(true, grid.rows[3][2], 'failed');
+//    assert.equal(true, grid.rows[3][3], 'failed');
+//    assert.equal(true, grid.rows[3][4], 'failed');
+//});
 
-    assert.equal(false, gameController.fill(piece), 'failed');
-    assert.equal(true, grid.rows[3][2], 'failed');
-    assert.equal(true, grid.rows[3][3], 'failed');
-    assert.equal(true, grid.rows[3][4], 'failed');
-});
-
-QUnit.test("should remove pieces that make a line end to end horizontally", function (assert) {
-    var piece = new LongBar(0, 0, 90);
-    var piece2 = new LongBar(4, 0, 90);
-    var grid = new Grid(8, 7);
-    var gameController = new TetrisGame(grid);
-    gameController.fill(piece);
-    gameController.fill(piece2);
-    gameController.explodeCompleteLines();
-    assert.deepEqual(false, grid.rows[0][0], 'failed');
-});
+//QUnit.test("should remove pieces that make a line end to end horizontally", function (assert) {
+//    var piece = new LongBar(0, 0, 90);
+//    var piece2 = new LongBar(4, 0, 90);
+//    var grid = new Grid(8, 7);
+//    var gameController = new TetrisGame(grid);
+//    gameController.fill(piece);
+//    gameController.fill(piece2);
+//    gameController.explodeCompleteLines();
+//    assert.deepEqual(false, grid.rows[0][0], 'failed');
+//});
 
 QUnit.test("should remove pieces that make a line end to end horizontally II", function (assert) {
     var piece = new LongBar(0, 0, 0);
