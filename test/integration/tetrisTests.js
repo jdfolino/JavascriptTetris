@@ -6,11 +6,8 @@ var Grid = require("../../lib/grid")
 var LongBar = require("../../lib/pieces/longBar")
 
 var GAME_MOVES = {
-    DOWN: {move: 'down', x_transformation: 0, y_transformation: -1},
-    LEFT: {move: 'left', x_transformation: -1, y_transformation: 0},
-    RIGHT: {move: 'right', x_transformation: 1, y_transformation: 0},
-    ROTATE_ANTI_CLOCKWISE: {move: 'rotateAntiClockwise', x_transformation: 0, y_transformation: 0},
-    ROTATE_CLOCKWISE: {move: 'rotateClockwise', x_transformation: 0, y_transformation: 0}
+    //LEFT: {move: 'left', x_transformation: -1, y_transformation: 0},
+    //RIGHT: {move: 'right', x_transformation: 1, y_transformation: 0}
 }
 
 QUnit.test("Tetris Game should initiate witha queue of 4 pieces", function (assert) {
@@ -23,17 +20,15 @@ QUnit.test("it should not allow to a piece to rotate clockwise if it falls off t
     var grid = new Grid(5, 5);
     var longBar = new LongBar(4, 0, 0);
     var gameController = new TetrisGame(grid, 0, longBar);
-    var result = gameController.tryMove(longBar,
-        {move: 'rotateClockwise', x_transformation: 0, y_transformation: 0}
-    );
-    assert.equal(false, result, "failed");
+    var result = gameController.rotateClockwise(longBar);
+    assert.equal(false, result, "failed\nexpected false,\ngot " + result);
 });
 
 QUnit.test("should allow a piece to rotate if it does not fall off the grid", function (assert) {
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, piece);
-    var result = gameController.tryMove(piece, {move: 'rotateClockwise', x_transformation: 0, y_transformation: 0});
+    var result = gameController.rotateClockwise(piece);
     assert.equal(true, result, 'false');
 });
 
@@ -41,7 +36,7 @@ QUnit.test("should not allow pieces to fall of the grid going SOUTH", function (
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, piece);
-    var result = gameController.tryMove(piece, GAME_MOVES.DOWN);
+    var result = gameController.moveDown(piece);
     assert.equal(false, result, 'failed');
 });
 
@@ -49,7 +44,7 @@ QUnit.test("should not allow pieces to fall of the grid going WEST", function (a
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, piece);
-    var result = gameController.tryMove(piece, GAME_MOVES.LEFT);
+    var result = gameController.moveLeft(piece);
     assert.equal(false, result, 'failed');
 });
 
@@ -58,7 +53,7 @@ QUnit.test("should not allow pieces to fall of the grid going EAST", function (a
     var piece = new LongBar(0, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, piece);
-    var result = gameController.tryMove(piece, GAME_MOVES.RIGHT);
+    var result = gameController.moveRight(piece);
     assert.equal(false, result, 'failed');
 });
 
@@ -66,7 +61,7 @@ QUnit.test("should not allow pieces to fall of the grid going EAST (Part II)", f
     var piece = new LongBar(5, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, piece);
-    var result = gameController.tryMove(piece, GAME_MOVES.RIGHT);
+    var result = gameController.moveRight(piece);
     assert.equal(false, result, 'failed');
 });
 
@@ -172,7 +167,6 @@ QUnit.test("should remove pieces that make a line end to end horizontally II", f
     gameController.fill(piece);
     gameController.fill(piece2);
     gameController.explodeCompleteLines();
-    console.log(grid.rows)
     //assert.equal(false, grid.rows[0][0], 'failed');
     assert.equal(false, grid.rows[0][1], 'failed');
 });
