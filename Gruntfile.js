@@ -1,11 +1,17 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['exec', 'browserify']);
+    grunt.registerTask('default', ['exec:qunit', 'browserify', 'uglify', 'exec:deploy']);
     grunt.initConfig({
         exec: {
             qunit: {
                 command: 'qunit-cli test/**/*',
+                stdout: true,
+                stderr: false
+            },
+
+            deploy: {
+                command: 'cp target/tetris.min.js web/tetris.min.js',
                 stdout: true,
                 stderr: false
             }
@@ -13,11 +19,21 @@ module.exports = function (grunt) {
         browserify: {
             client: {
                 src: ['lib/tetris.js'],
-                dest: 'web/tetris.min.js',
+                dest: 'target/tetris.js',
                 options: {
                     browserifyOptions: {
                         standalone: 'Tetris'
                     }
+                }
+            }
+        },
+        uglify: {
+            options: {
+                mangle: false
+            },
+            my_target: {
+                files: {
+                    'target/tetris.min.js': ['target/tetris.js']
                 }
             }
         }
@@ -25,6 +41,7 @@ module.exports = function (grunt) {
 
     grunt.loadNpmTasks('grunt-browserify');
     grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
     //browserify lib/tetris.js -s Tetris > target/tetris-min.js
 
 };
