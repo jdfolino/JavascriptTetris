@@ -49,7 +49,6 @@ var main = function (uiFunctions, grid, starting_interval) {
             that.controller.score = that.controller.score + 1;
             uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
             if (that.controller.moveDown(that.activePiece) == false) {
-
                 that.activePiece = that.controller.pieceHitsGround(that.activePiece);
             }
             uiFunctions.drawGrid('#grid', that.grid);

@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['exec:qunit', 'jshint', 'browserify', 'uglify', 'exec:deploy']);
+    grunt.registerTask('default', ['exec:qunit', 'jshint', 'plato', 'browserify', 'uglify', 'exec:deploy']);
     grunt.initConfig({
         exec: {
             qunit: {
