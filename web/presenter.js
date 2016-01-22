@@ -17,28 +17,27 @@ var main = function (uiFunctions, grid, starting_interval) {
     this.activePiece = this.controller.getNextPiece();
     $(document).keydown(function (e) {
         if (e.keyCode == 37) {
-            debugger
-            uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
             that.controller.moveLeft();
-            uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 38) {
-            uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
             that.controller.rotateClockwise();
-            uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 39) {
-            uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
             that.controller.moveRight();
-            uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
         }
         return false;
     });
@@ -59,21 +58,22 @@ var main = function (uiFunctions, grid, starting_interval) {
     });
 
     timeouts.push(setInterval(function () {
-        uiFunctions.clearPiece('#grid',that.activePiece, that.grid);
+        uiFunctions.clearPiece('#grid',that.controller.activePiece, that.grid);
         if (that.controller.moveDown() == false) {
-            that.activePiece = that.controller.pieceHitsGround(that.activePiece);
-            uiFunctions.renderGameOver(that.activePiece, that.stats);
+            that.activePiece = that.controller.pieceHitsGround();
+            uiFunctions.renderGameOver(that.controller.activePiece, that.stats);
         }
         uiFunctions.drawGrid('#grid', that.grid);
 
-        uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared, that.controller.level(), that.controller.stats);
+        uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared,
+            that.controller.level(), that.controller.stats);
 
-        uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
     },  1000));
 
     this.start = function () {
         uiFunctions.drawGrid('#grid', that.grid);
-        uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
         uiFunctions.renderPieceQueue(that.controller.pieceQueue);
         uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared, that.controller.level(), that.controller.stats);
     }
