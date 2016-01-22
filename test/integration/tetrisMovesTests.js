@@ -9,7 +9,7 @@ QUnit.test("it should not allow to a piece to rotate clockwise if it falls off t
     var grid = new Grid(5, 5);
     var longBar = new LongBar(4, 0, 0);
     var gameController = new TetrisGame(grid, 0, [longBar]);
-    var result = gameController.rotateClockwise(longBar);
+    var result = gameController.rotateClockwise();
     assert.equal(false, result, "failed\nexpected false,\ngot " + result);
 });
 
@@ -17,7 +17,7 @@ QUnit.test("should allow a piece to rotate if it does not fall off the grid", fu
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, [piece]);
-    var result = gameController.rotateClockwise(piece);
+    var result = gameController.rotateClockwise();
     assert.equal(true, result, 'false');
 });
 
@@ -25,7 +25,7 @@ QUnit.test("should not allow pieces to fall of the grid going SOUTH", function (
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, [piece]);
-    var result = gameController.moveDown(piece);
+    var result = gameController.moveDown();
     assert.equal(false, result, 'failed');
 });
 
@@ -33,7 +33,7 @@ QUnit.test("should not allow pieces to fall of the grid going left", function (a
     var piece = new LongBar(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, [piece]);
-    var result = gameController.moveLeft(piece);
+    var result = gameController.moveLeft();
     assert.equal(false, result, 'failed');
 });
 
@@ -42,7 +42,7 @@ QUnit.test("should not allow pieces to fall of the grid going right", function (
     var piece = new LongBar(0, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, [piece]);
-    var result = gameController.moveRight(piece);
+    var result = gameController.moveRight();
     assert.equal(false, result, 'failed');
 });
 
@@ -50,7 +50,7 @@ QUnit.test("should not allow pieces to fall of the grid going EAST (Part II)", f
     var piece = new LongBar(5, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisGame(grid, 0, [piece]);
-    var result = gameController.moveRight(piece);
+    var result = gameController.moveRight();
     assert.equal(false, result, 'failed');
 });
 

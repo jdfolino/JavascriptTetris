@@ -19,7 +19,7 @@ var main = function (uiFunctions, grid, starting_interval) {
         if (e.keyCode == 37) {
             debugger
             uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
-            that.controller.moveLeft(that.activePiece);
+            that.controller.moveLeft();
             uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
         }
         return false;
@@ -28,7 +28,7 @@ var main = function (uiFunctions, grid, starting_interval) {
     $(document).keydown(function (e) {
         if (e.keyCode == 38) {
             uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
-            that.controller.rotateClockwise(that.activePiece);
+            that.controller.rotateClockwise();
             uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
         }
         return false;
@@ -36,9 +36,8 @@ var main = function (uiFunctions, grid, starting_interval) {
 
     $(document).keydown(function (e) {
         if (e.keyCode == 39) {
-            debugger
             uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
-            that.controller.moveRight(that.activePiece);
+            that.controller.moveRight();
             uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
         }
         return false;
@@ -48,7 +47,7 @@ var main = function (uiFunctions, grid, starting_interval) {
         if (e.keyCode == 40) {
             that.controller.score = that.controller.score + 1;
             uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
-            if (that.controller.moveDown(that.activePiece) == false) {
+            if (that.controller.moveDown() == false) {
                 that.activePiece = that.controller.pieceHitsGround(that.activePiece);
             }
             uiFunctions.drawGrid('#grid', that.grid);
@@ -61,7 +60,7 @@ var main = function (uiFunctions, grid, starting_interval) {
 
     timeouts.push(setInterval(function () {
         uiFunctions.clearPiece('#grid',that.activePiece, that.grid);
-        if (that.controller.moveDown(that.activePiece) == false) {
+        if (that.controller.moveDown() == false) {
             that.activePiece = that.controller.pieceHitsGround(that.activePiece);
             uiFunctions.renderGameOver(that.activePiece, that.stats);
         }
