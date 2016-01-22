@@ -16,27 +16,27 @@ var main = function (uiFunctions, grid, starting_interval) {
     this.activePiece = this.controller.getNextPiece();
     $(document).keydown(function (e) {
         if (e.keyCode == 37) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.clearPiece('#grid', that.controller);
             that.controller.moveLeft();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.drawPiece('#grid', that.controller);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 38) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.clearPiece('#grid', that.controller);
             that.controller.rotateClockwise();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.drawPiece('#grid', that.controller);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 39) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.clearPiece('#grid', that.controller);
             that.controller.moveRight();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
+            uiFunctions.drawPiece('#grid', that.controller);
         }
         return false;
     });
@@ -44,20 +44,20 @@ var main = function (uiFunctions, grid, starting_interval) {
     $(document).keydown(function (e) {
         if (e.keyCode == 40) {
             that.controller.score = that.controller.score + 1;
-            uiFunctions.clearPiece('#grid', that.activePiece, that.controller.grid);
+            uiFunctions.clearPiece('#grid', that.controller);
             if (that.controller.moveDown() == false) {
                 that.activePiece = that.controller.pieceHitsGround(that.activePiece);
             }
             uiFunctions.drawGrid('#grid', that.controller.grid);
             uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared, that.controller.level(), that.controller.stats);
             uiFunctions.renderPieceQueue(that.controller.pieceQueue);
-            uiFunctions.drawPiece('#grid', that.activePiece, that.controller.grid);
+            uiFunctions.drawPiece('#grid', that.controller);
         }
         return false;
     });
 
     timeouts.push(setInterval(function () {
-        uiFunctions.clearPiece('#grid',that.controller.activePiece, that.controller.grid);
+        uiFunctions.clearPiece('#grid',that.controller);
         if (that.controller.moveDown() == false) {
             that.activePiece = that.controller.pieceHitsGround();
             uiFunctions.renderGameOver(that.controller.activePiece, that.stats);
@@ -67,7 +67,7 @@ var main = function (uiFunctions, grid, starting_interval) {
         uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared,
             that.controller.level(), that.controller.stats);
 
-        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
+        uiFunctions.drawPiece('#grid', that.controller);
     },  1000));
 
     this.start = function () {
@@ -133,7 +133,9 @@ $(document).ready(function () {
 
         },
 
-        drawPiece: function(id, piece, grid) {
+        drawPiece: function(id, controller) {
+            var piece = controller.activePiece
+            var grid = controller.grid
             for (var i = 0; i < piece.gridItemsOccupied().length; i++) {
                 var el = $(id + " > div:eq(" + (grid.y - piece.gridItemsOccupied()[i][1] - 1) + ") > span:eq(" + (piece.gridItemsOccupied()[i][0] ) + ")");
                 el.addClass('arrow');
@@ -141,7 +143,9 @@ $(document).ready(function () {
             }
         },
 
-        clearPiece: function (id, piece, grid) {
+        clearPiece: function (id, controller) {
+            var piece = controller.activePiece
+            var grid = controller.grid
             for (var i = 0; i < piece.gridItemsOccupied().length; i++) {
                 var el = $(id + " > div:eq(" + (grid.y - piece.gridItemsOccupied()[i][1] - 1) + ") > span:eq(" + (piece.gridItemsOccupied()[i][0] ) + ")");
                 el.removeClass('arrow');
