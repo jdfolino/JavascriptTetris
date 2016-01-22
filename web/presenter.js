@@ -10,34 +10,33 @@ function reverse(a) {
 var main = function (uiFunctions, grid, starting_interval) {
     var timeouts = [];
     this.controller = new Tetris();
-    this.grid = this.controller.grid;
 
     var that = this;
 
     this.activePiece = this.controller.getNextPiece();
     $(document).keydown(function (e) {
         if (e.keyCode == 37) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
             that.controller.moveLeft();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 38) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
             that.controller.rotateClockwise();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
         }
         return false;
     });
 
     $(document).keydown(function (e) {
         if (e.keyCode == 39) {
-            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.controller.activePiece, that.controller.grid);
             that.controller.moveRight();
-            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
         }
         return false;
     });
@@ -45,35 +44,35 @@ var main = function (uiFunctions, grid, starting_interval) {
     $(document).keydown(function (e) {
         if (e.keyCode == 40) {
             that.controller.score = that.controller.score + 1;
-            uiFunctions.clearPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.clearPiece('#grid', that.activePiece, that.controller.grid);
             if (that.controller.moveDown() == false) {
                 that.activePiece = that.controller.pieceHitsGround(that.activePiece);
             }
-            uiFunctions.drawGrid('#grid', that.grid);
+            uiFunctions.drawGrid('#grid', that.controller.grid);
             uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared, that.controller.level(), that.controller.stats);
             uiFunctions.renderPieceQueue(that.controller.pieceQueue);
-            uiFunctions.drawPiece('#grid', that.activePiece, that.grid);
+            uiFunctions.drawPiece('#grid', that.activePiece, that.controller.grid);
         }
         return false;
     });
 
     timeouts.push(setInterval(function () {
-        uiFunctions.clearPiece('#grid',that.controller.activePiece, that.grid);
+        uiFunctions.clearPiece('#grid',that.controller.activePiece, that.controller.grid);
         if (that.controller.moveDown() == false) {
             that.activePiece = that.controller.pieceHitsGround();
             uiFunctions.renderGameOver(that.controller.activePiece, that.stats);
         }
-        uiFunctions.drawGrid('#grid', that.grid);
+        uiFunctions.drawGrid('#grid', that.controller.grid);
 
         uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared,
             that.controller.level(), that.controller.stats);
 
-        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
+        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
     },  1000));
 
     this.start = function () {
-        uiFunctions.drawGrid('#grid', that.grid);
-        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.grid);
+        uiFunctions.drawGrid('#grid', that.controller.grid);
+        uiFunctions.drawPiece('#grid', that.controller.activePiece, that.controller.grid);
         uiFunctions.renderPieceQueue(that.controller.pieceQueue);
         uiFunctions.setLinesCleared(that.controller.score, that.controller.linesCleared, that.controller.level(), that.controller.stats);
     }
