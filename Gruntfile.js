@@ -11,7 +11,7 @@ module.exports = function (grunt) {
             },
 
             deploy: {
-                command: 'cp target/tetris.js web/tetris.min.js',
+                command: 'cp target/tetris.js jquery_web/tetris.min.js',
                 stdout: true,
                 stderr: false
             }
