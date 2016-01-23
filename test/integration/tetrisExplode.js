@@ -44,8 +44,8 @@ QUnit.test("should remove pieces that make a line end to end horizontally II", f
     var piece2 = new LongBar(0, 4, 0);
     var grid = new Grid(8, 8);
     var gameController = new TetrisFactory().create(grid);
-    gameController.fill(piece);
-    gameController.fill(piece2);
+    grid.fill(piece);
+    grid.fill(piece2);
     gameController.explodeCompleteLines();
     //assert.equal(false, grid.rows[0][0], 'failed');
     assert.equal(false, grid.rows[0][1], 'failed');
