@@ -18,11 +18,11 @@ module.exports = function (grunt) {
         },
         browserify: {
             client: {
-                src: ['lib/tetris.js'],
+                src: ['lib/tetrisFactory.js'],
                 dest: 'target/tetris.js',
                 options: {
                     browserifyOptions: {
-                        standalone: 'Tetris'
+                        standalone: 'TetrisFactory'
                     }
                 }
             }

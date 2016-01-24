@@ -9,7 +9,7 @@ function reverse(a) {
 
 var main = function (uiFunctions, grid, starting_interval) {
     var timeouts = [];
-    this.controller = new Tetris();
+    this.controller = new TetrisFactory().create();
     var that = this;
     this.controller.getNextPiece();
     $(document).keydown(function (e) {
