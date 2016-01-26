@@ -1,17 +1,11 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['exec:qunit', 'jshint', 'plato', 'browserify', 'uglify', 'exec:deploy']);
+    grunt.registerTask('default', ['exec:qunit', 'jshint', 'plato', 'browserify', 'uglify']);
     grunt.initConfig({
         exec: {
             qunit: {
                 command: 'qunit-cli test/**/*',
-                stdout: true,
-                stderr: false
-            },
-
-            deploy: {
-                command: 'cp target/tetris.js jquery_web/tetris.min.js',
                 stdout: true,
                 stderr: false
             }
