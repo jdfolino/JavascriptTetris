@@ -1,0 +1,23 @@
+{
+  "name": "tetris-ui-jquery",
+  "homepage": "https://github.com/jdfolino/JavascriptTetris",
+  "authors": [
+    "Jarrod Folino <jdfolino@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.2.0",
+    "jquery-ui": "~1.11.4"
+  }
+}
