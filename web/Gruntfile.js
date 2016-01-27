@@ -5,7 +5,7 @@ module.exports = function (grunt) {
     grunt.initConfig({
         watch: {
             scripts: {
-                files: ['src/**/*.*'],
+                files: ['src/**/*.*', '../core/target/tetris.js'],
                 tasks: ['default'],
                 options: {
                     spawn: false,
