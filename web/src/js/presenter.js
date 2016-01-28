@@ -100,23 +100,23 @@ $(document).ready(function () {
             var level = controller.level();
             var stats = controller.stats;
             var el = $("#lines");
-            el.text('Lines cleared: ' + linesCleared);
+            el.text(linesCleared);
 
             el = $("#score");
-            el.text('Score: ' + score);
+            el.text(score);
 
             el = $("#level");
-            el.text('Level: ' + level);
+            el.text(level);
 
             el = $("#singles");
-            el.text("Singles: " + stats[1]);
+            el.text(stats[1]);
             el = $("#doubles");
-            el.text("Doubles: " + stats[2]);
+            el.text(stats[2]);
             el = $("#triples");
-            el.text("Triples: " + stats[3]);
+            el.text(stats[3]);
 
             el = $("#tetra");
-            el.text("Tetra: " + stats[4]);
+            el.text(stats[4]);
 
         },
 
