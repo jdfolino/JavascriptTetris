@@ -1,8 +1,10 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <title>Tetris</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="css/style.css" rel="stylesheet" type="text/css" media="screen"/>
     <link href="css/_bower.css" rel="stylesheet" type="text/css" media="screen"/>
     <script type="text/javascript" src="js/_bower.js"></script>
@@ -38,17 +40,19 @@
         <div class="col-md-12">
             <div id="navigation">
                 <ul class="nav nav-tabs nav-justified">
-                    <li><a id="new_game" href="#">New Game</a></li>
-                    <li><a href="#">Custom Game</a></li>
-                    <li><a href="#">Source Code</a></li>
-                    <li><a href="#">About Me</a></li>
+                    <li><a id="new_game" href="">Home</a></li>
+                    <li><a target="_new" href="https://github.com/jdfolino/JavascriptTetris">Source Code</a></li>
+                    <li><a target="_new" href="https://www.linkedin.com/in/jarrod-folino-711727b">About Me</a></li>
                 </ul>
             </div>
         </div>
     </div>
 
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-4">
+            queue
+        </div>
+        <div class="col-md-4">
             <div id="controls">
                 <button type="button" id="play_now" data-loading-text="Loading..." class="btn btn-primary">
                     Play Now
@@ -56,7 +60,7 @@
             </div>
             <div id="grid"></div>
         </div>
-        <div class="col-md-4">
+        <div id="statistics-panel" class="col-md-4 hidden">
                 Level: <span class="badge" id="level">0</span>
                 Score: <span class="badge" id="score">0</span>
                 Lines Cleared: <span class="badge" id="lines">0</span>
@@ -66,6 +70,9 @@
                 Tetra: <span class="badge" id="tetra">0</span>
         </div>
     </div>
+    <footer>
+        Footer
+    </footer>
 </div>
 </body>
 </html>

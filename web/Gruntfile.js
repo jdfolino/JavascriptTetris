@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['clean', 'copy', 'exec:bower_install', 'bower_concat', 'exec:tetris_install']);
+    grunt.registerTask('default', ['clean', 'bootlint', 'copy', 'exec:bower_install', 'bower_concat', 'exec:tetris_install']);
     grunt.initConfig({
         watch: {
             scripts: {
@@ -41,11 +41,19 @@ module.exports = function (grunt) {
             tetris_install : {
                 cmd: "cp ../core/target/tetris.js build/js/tetris.min.js"
             }
+        },
+        bootlint: {
+            options: {
+                stoponerror: true,
+                relaxerror: ['W005']
+            },
+            files: ['src/*.html']
         }
     });
     grunt.loadNpmTasks('grunt-bower-concat');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-bootlint');
     grunt.loadNpmTasks('grunt-contrib-watch');
 };

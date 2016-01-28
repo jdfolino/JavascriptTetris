@@ -77,7 +77,11 @@ span {
     padding: 30px;
 }
 
-#grid > div > span, #p1 > div > span, #p2 > div > span, #p3 > div > span, #p4 > div > span {
+#grid > div > span,
+#p1 > div > span,
+#p2 > div > span,
+#p3 > div > span,
+#p4 > div > span {
 
     width: 17px;
     height: 17px;

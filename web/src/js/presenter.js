@@ -164,6 +164,7 @@ $(document).ready(function () {
     $("#play_now").click(function () {
         $("#controls").hide();
         $("#grid").show();
+        $("#statistics-panel").removeClass("hidden");
         presenter = main(uiFunctions);
         presenter.start();
     });
