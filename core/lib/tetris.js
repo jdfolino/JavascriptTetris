@@ -17,16 +17,12 @@ function Tetris(grid, pieceQueue) {
     };
 
     this.createRandomPiece = function (grid) {
-        return createRandomPiece(grid);
-    };
-
-    function createRandomPiece(grid) {
         var piece = new PieceFactory().getPiece(grid);
-        if (squaresAlreadyOccupied(piece, 0, 0)) {
+        if (this.squaresAlreadyOccupied(piece, 0, 0)) {
             return false;
         }
         return piece;
-    }
+    };
 
     this.level = function () {
         return Math.floor(this.linesCleared / 10);
@@ -66,24 +62,24 @@ function Tetris(grid, pieceQueue) {
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            if (y < 0 || y + y_transformation >= grid.y || x < 0 || x + x_transformation >= grid.x) {
+            if (y < 0 || y + y_transformation >= this.grid.y || x < 0 || x + x_transformation >= this.grid.x) {
                 return false;
             }
         }
         return true;
     };
 
-    function squaresAlreadyOccupied(piece, x_transformation, y_transformation) {
+    this.squaresAlreadyOccupied = function(piece, x_transformation, y_transformation) {
         var coordinates = piece.gridItemsOccupied();
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            if (grid.rows[y + y_transformation][x + x_transformation] === true) {
+            if (this.grid.rows[y + y_transformation][x + x_transformation] === true) {
                 return true;
             }
         }
         return false;
-    }
+    };
 
     this.tryMove = function (commandKey) {
         var command = {
@@ -97,7 +93,7 @@ function Tetris(grid, pieceQueue) {
         var activePieceClone = this.activePiece.clone();
         activePieceClone[command.move]();
         var validMove = this.stillOnGrid(activePieceClone, 0, 0) &&
-            squaresAlreadyOccupied(this.activePiece, command.x_transformation, command.y_transformation) === false;
+            this.squaresAlreadyOccupied(this.activePiece, command.x_transformation, command.y_transformation) === false;
         if (validMove) {
             this.activePiece[command.move]();
         }
