@@ -34,7 +34,7 @@ function Tetris(grid, pieceQueue) {
 
     this.pieceHitsGround = function() {
         this.grid.fill(this.activePiece);
-        var noOfLinesExploded = grid.explodeCompleteLines(0);
+        var noOfLinesExploded = this.grid.explodeCompleteLines(0);
         this.stats[noOfLinesExploded]++;
         this.linesCleared = this.linesCleared + noOfLinesExploded;
         this.score = this.score + (this.scoring_system[noOfLinesExploded] * (this.level() + 1));
@@ -61,7 +61,7 @@ function Tetris(grid, pieceQueue) {
         return this.tryMove('RIGHT');
     };
 
-    function stillOnGrid(piece, x_transformation, y_transformation) {
+    this.stillOnGrid = function(piece, x_transformation, y_transformation) {
         var coordinates = piece.gridItemsOccupied();
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
@@ -71,7 +71,7 @@ function Tetris(grid, pieceQueue) {
             }
         }
         return true;
-    }
+    };
 
     function squaresAlreadyOccupied(piece, x_transformation, y_transformation) {
         var coordinates = piece.gridItemsOccupied();
@@ -96,7 +96,7 @@ function Tetris(grid, pieceQueue) {
 
         var activePieceClone = this.activePiece.clone();
         activePieceClone[command.move]();
-        var validMove = stillOnGrid(activePieceClone, 0, 0) &&
+        var validMove = this.stillOnGrid(activePieceClone, 0, 0) &&
             squaresAlreadyOccupied(this.activePiece, command.x_transformation, command.y_transformation) === false;
         if (validMove) {
             this.activePiece[command.move]();
