@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['clean', 'bootlint', 'sass', 'copy', 'exec:bower_install', 'bower_concat', 'exec:tetris_install']);
+    grunt.registerTask('default', ['clean', 'bootlint', 'sass', 'exec:bower_install', 'copy', 'bower_concat', 'exec:tetris_install']);
     grunt.initConfig({
         watch: {
             scripts: {
@@ -15,11 +15,20 @@ module.exports = function (grunt) {
         clean: 'build',
         copy: {
             build: {
-                cwd: 'src',
-                src: [ '**' ],
-                dest: 'build',
-                expand: true
-            },
+                files: [{
+                    cwd: 'src',
+                    src: ['**'],
+                    dest: 'build',
+                    expand: true
+                }, {
+                    expand: true,
+                    dot: true,
+                    cwd: 'bower_components/components-font-awesome', // change this for font-awesome
+                    src: ['fonts/*.*'],
+                    dest: 'build'
+                }
+                ]
+            }
         },
         bower_concat: {
             all: {
@@ -27,7 +36,8 @@ module.exports = function (grunt) {
                 cssDest: 'build/css/_bower.css',
                 mainFiles: {
                     jquery: ['dist/jquery.js'],
-                    bootstrap: [ 'dist/css/bootstrap.min.css', 'dist/js/bootstrap.min.js' ]
+                    bootstrap: ['dist/css/bootstrap.min.css', 'dist/js/bootstrap.min.js'],
+                    "components-font-awesome": ['css/font-awesome.min.css']
                 },
                 bowerOptions: {
                     relative: false
@@ -38,7 +48,7 @@ module.exports = function (grunt) {
             bower_install: {
                 cmd: "bower install"
             },
-            tetris_install : {
+            tetris_install: {
                 cmd: "cp ../core/target/tetris.js build/js/tetris.min.js"
             }
         },
@@ -51,8 +61,7 @@ module.exports = function (grunt) {
         },
         sass: {
             dist: {
-                files:
-                    [{
+                files: [{
                     expand: true,
                     cwd: 'src/scss',
                     src: '*.scss',
