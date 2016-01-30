@@ -1,7 +1,7 @@
 module.exports = function (grunt) {
 
     // Project configuration.
-    grunt.registerTask('default', ['clean', 'bootlint', 'copy', 'exec:bower_install', 'bower_concat', 'exec:tetris_install']);
+    grunt.registerTask('default', ['clean', 'bootlint', 'sass', 'copy', 'exec:bower_install', 'bower_concat', 'exec:tetris_install']);
     grunt.initConfig({
         watch: {
             scripts: {
@@ -48,6 +48,19 @@ module.exports = function (grunt) {
                 relaxerror: ['W005']
             },
             files: ['src/*.html']
+        },
+        sass: {
+            dist: {
+                files:
+                    [{
+                    expand: true,
+                    cwd: 'src/scss',
+                    src: '*.scss',
+                    dest: 'build/css',
+                    ext: '.css'
+                }]
+
+            }
         }
     });
     grunt.loadNpmTasks('grunt-bower-concat');
@@ -55,5 +68,6 @@ module.exports = function (grunt) {
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-bootlint');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
 };

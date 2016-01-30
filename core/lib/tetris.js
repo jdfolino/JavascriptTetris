@@ -16,8 +16,8 @@ function Tetris(grid, pieceQueue) {
         return this.activePiece;
     };
 
-    this.createRandomPiece = function (grid) {
-        var piece = new PieceFactory().getPiece(grid);
+    this.createRandomPiece = function() {
+        var piece = new PieceFactory().getPiece(this.grid);
         if (this.squaresAlreadyOccupied(piece, 0, 0)) {
             return false;
         }
@@ -81,7 +81,7 @@ function Tetris(grid, pieceQueue) {
         return false;
     };
 
-    this.tryMove = function (commandKey) {
+    this.tryMove = function (commandKey){
         var command = {
             'DOWN': {move: 'down', x_transformation: 0, y_transformation: -1},
             'LEFT': {move: 'left', x_transformation: -1, y_transformation: 0},

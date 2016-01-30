@@ -50,7 +50,6 @@
     margin-bottom: 30px;
     padding-top: 10px;
     padding-bottom: 10px;
-
 }
 
 #grid {
@@ -68,20 +67,13 @@ span {
     padding: 3px;
 }
 
-
 #instructions {
     margin: 0 auto;
     width: auto;
     padding: 30px;
 }
 
-
-
-#grid > div > span,
-#p1 > div > span,
-#p2 > div > span,
-#p3 > div > span,
-#p4 > div > span {
+#grid > div > span, #p1 > div > span, #p2 > div > span, #p3 > div > span, #p4 > div > span {
     width: 17px;
     height: 100%;
     text-align: center;
@@ -90,68 +82,62 @@ span {
     border-radius: 1px;
 }
 
-
 /* Custom, iPhone Retina */
-@media only screen and (min-width : 320px) {
+@media only screen and (min-width: 320px) {
     #grid > div {
         height: 17px;
-    }
-
-    #grid > div > span {
-        width: 17px;
-        border-radius: 1px;
+        > span {
+            width: 17px;
+            border-radius: 1px;
+        }
     }
 }
 
 /* Extra Small Devices, Phones */
-@media only screen and (min-width : 480px) {
+@media only screen and (min-width: 480px) {
     #grid > div {
         height: 22px;
-    }
-
-    #grid > div > span {
-        width: 22px;
-        border-radius: 1px;
+        > span {
+            width: 22px;
+            border-radius: 1px;
+        }
     }
 }
 
 /* Small Devices, Tablets */
-@media only screen and (min-width : 768px) {
+@media only screen and (min-width: 768px) {
     #grid > div {
         height: 25px;
-    }
-
-    #grid > div > span {
-        width: 25px;
-        border-radius: 1px;
+        > span {
+            width: 25px;
+            border-radius: 1px;
+        }
     }
 }
 
 /* Medium Devices, Desktops */
-@media only screen and (min-width : 992px) {
+@media only screen and (min-width: 992px) {
     #grid > div {
         height: 28px;
-    }
-
-    #grid > div > span {
-        width: 28px;
-        border-radius: 1px;
+        > span {
+            width: 28px;
+            border-radius: 1px;
+        }
     }
 }
 
 /* Large Devices, Wide Screens */
-@media only screen and (min-width : 1200px) {
+@media only screen and (min-width: 1200px) {
     #grid > div {
         height: 33px;
-    }
-
-    #grid > div > span {
-        width: 33px;
-        border-radius: 1px;
+        > span {
+            width: 33px;
+            border-radius: 1px;
+        }
     }
 }
 
-.arrow2  {
+.arrow2 {
     width: 18px;
     height: 18px;
     text-align: center;
