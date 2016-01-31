@@ -74,7 +74,7 @@ function Tetris(grid, pieceQueue) {
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            if (this.grid.rows[y + y_transformation][x + x_transformation] === true) {
+            if (this.grid.rows[y + y_transformation][x + x_transformation] !== false) {
                 return true;
             }
         }

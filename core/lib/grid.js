@@ -25,9 +25,8 @@ function Grid(x, y) {
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            this.rows[y][x] = true;
+            this.rows[y][x] = piece.name;
         }
-        return true;
     };
 
     this.explodeCompleteLines = function (linesAlreadyExploded) {

@@ -83,8 +83,8 @@ $(document).ready(function () {
                 out = out + "<div>";
                 for (var j = 0; j < rows[a].length; j++) {
                     var cssClass = ""
-                    if (rows[a][j] === true) {
-                        cssClass = 'arrow2'
+                    if (rows[a][j] !== false) {
+                        cssClass = rows[a][j];
                     }
 
                     out = out + "<span class='" + cssClass + "'></span>";
