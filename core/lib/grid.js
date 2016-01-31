@@ -25,9 +25,8 @@ function Grid(x, y) {
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            this.rows[y][x] = true;
+            this.rows[y][x] = piece.name;
         }
-        return true;
     };
 
     this.explodeCompleteLines = function (linesAlreadyExploded) {
@@ -35,7 +34,7 @@ function Grid(x, y) {
             var rows_to_delete = null;
             for (var i = 0; i < me.rows.length; i++) {
                 if (me.rows[i].filter(function (cell) {
-                        return cell === true;
+                        return cell !== false;
                     }).length === me.rows[i].length) {
                     rows_to_delete = i;
                     break;

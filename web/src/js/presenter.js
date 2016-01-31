@@ -7,8 +7,8 @@ function reverse(a) {
     return result;
 }
 
+var timeouts = [];
 var main = function (uiFunctions, grid, starting_interval) {
-    var timeouts = [];
     this.controller = new TetrisFactory().create();
     var that = this;
     this.controller.getNextPiece();
@@ -83,8 +83,8 @@ $(document).ready(function () {
                 out = out + "<div>";
                 for (var j = 0; j < rows[a].length; j++) {
                     var cssClass = ""
-                    if (rows[a][j] === true) {
-                        cssClass = 'arrow2'
+                    if (rows[a][j] !== false) {
+                        cssClass = rows[a][j];
                     }
 
                     out = out + "<span class='" + cssClass + "'></span>";
@@ -125,7 +125,6 @@ $(document).ready(function () {
             var grid = controller.grid
             for (var i = 0; i < piece.gridItemsOccupied().length; i++) {
                 var el = $(id + " > div:eq(" + (grid.y - piece.gridItemsOccupied()[i][1] - 1) + ") > span:eq(" + (piece.gridItemsOccupied()[i][0] ) + ")");
-                el.addClass('arrow');
                 el.addClass(piece.name);
             }
         },
@@ -135,7 +134,6 @@ $(document).ready(function () {
             var grid = controller.grid
             for (var i = 0; i < piece.gridItemsOccupied().length; i++) {
                 var el = $(id + " > div:eq(" + (grid.y - piece.gridItemsOccupied()[i][1] - 1) + ") > span:eq(" + (piece.gridItemsOccupied()[i][0] ) + ")");
-                el.removeClass('arrow');
                 el.removeClass(piece.name);
             }
         },
@@ -143,7 +141,10 @@ $(document).ready(function () {
         renderGameOver: function(piece, stats) {
             if (piece == false) {
                 alert('Game Over');
+                alert('clearInterval');
+                clearInterval(timeouts[0]);
             }
+
 //
 //            var scoringTypeGraph = Raphael("graph");
 //            var pie = null;
