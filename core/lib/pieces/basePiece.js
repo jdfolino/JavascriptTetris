@@ -1,9 +1,15 @@
 module.exports = BasePiece;
 
 function BasePiece(x, y, d) {
-    this.x_coord = x;
-    this.y_coord = y;
-    this.direction = d;
+    if (typeof x == "number") {
+        this.x_coord = x;
+    }
+    if (typeof y == "number") {
+        this.y_coord = y;
+    }
+    if (typeof d == "number") {
+        this.direction = d;
+    }
 
     this.name = "BasePiece";
 
@@ -34,22 +40,42 @@ function BasePiece(x, y, d) {
         this.x_coord = this.x_coord + 1;
     };
 
-    this.calcGridItemsOccupied = function(northCoordinates, x, y, direction) {
-        var eastCoordinates = northCoordinates.map(function (array) { return [array[1] , array[0]]; });
-        var southCoordinates = northCoordinates.map(function (array) { return [array[0] * -1, array[1] * -1]; });
-        var westCoordinates = eastCoordinates.map(function (array) { return [array[0] * -1, array[1] * -1]; });
+    this.place = function (x, y, d) {
+        this.x_coord = x;
+        this.y_coord = y;
+        this.direction = d;
+    };
+
+    this.calcGridItemsOccupied = function (northCoordinates, x, y, direction) {
+        var eastCoordinates = northCoordinates.map(function (array) {
+            return [array[1], array[0]];
+        });
+        var southCoordinates = northCoordinates.map(function (array) {
+            return [array[0] * -1, array[1] * -1];
+        });
+        var westCoordinates = eastCoordinates.map(function (array) {
+            return [array[0] * -1, array[1] * -1];
+        });
 
         if (direction === 0) {
-            return northCoordinates.map(function (array) { return [array[0] + x, array[1] + y]; });
+            return northCoordinates.map(function (array) {
+                return [array[0] + x, array[1] + y];
+            });
         }
         else if (direction === 90) {
-            return eastCoordinates.map(function (array) { return [array[0] + x, y-  array[1] ]; });
+            return eastCoordinates.map(function (array) {
+                return [array[0] + x, y - array[1]];
+            });
         }
         else if (direction === 180) {
-            return southCoordinates.map(function (array) { return [array[0] + x, array[1] + y]; });
+            return southCoordinates.map(function (array) {
+                return [array[0] + x, array[1] + y];
+            });
         }
         else if (direction === 270) {
-            return westCoordinates.map(function (array) { return [array[0] + x, y-array[1]]; });
+            return westCoordinates.map(function (array) {
+                return [array[0] + x, y - array[1]];
+            });
         }
         return null;
 

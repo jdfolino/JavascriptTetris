@@ -7,14 +7,16 @@ var LongBar = require("../../lib/pieces/longBar");
 
 QUnit.test("it should not allow to a piece to rotate clockwise if it falls off the grid", function (assert) {
     var grid = new Grid(5, 5);
-    var longBar = new LongBar(4, 0, 0);
+    var longBar = new LongBar();
+    longBar.place(4, 0, 0);
     var gameController = new TetrisFactory().create(grid, [longBar], 0);
     var result = gameController.rotateClockwise();
     assert.equal(false, result, "failed\nexpected false,\ngot " + result);
 });
 
 QUnit.test("should allow a piece to rotate if it does not fall off the grid", function (assert) {
-    var piece = new LongBar(0, 0, 0);
+    var piece = new LongBar();
+    piece.place(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisFactory().create(grid, [piece], 0);
     var result = gameController.rotateClockwise();
@@ -22,7 +24,8 @@ QUnit.test("should allow a piece to rotate if it does not fall off the grid", fu
 });
 
 QUnit.test("should not allow pieces to fall of the grid going SOUTH", function (assert) {
-    var piece = new LongBar(0, 0, 0);
+    var piece = new LongBar();
+    piece.place(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisFactory().create(grid, [piece], 0);
     var result = gameController.moveDown();
@@ -30,7 +33,8 @@ QUnit.test("should not allow pieces to fall of the grid going SOUTH", function (
 });
 
 QUnit.test("should not allow pieces to fall of the grid going left", function (assert) {
-    var piece = new LongBar(0, 0, 0);
+    var piece = new LongBar();
+    piece.place(0, 0, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisFactory().create(grid, [piece], 0);
     var result = gameController.moveLeft();
@@ -39,7 +43,8 @@ QUnit.test("should not allow pieces to fall of the grid going left", function (a
 
 
 QUnit.test("should not allow pieces to fall of the grid going right", function (assert) {
-    var piece = new LongBar(0, 5, 0);
+    var piece = new LongBar();
+    piece.place(0, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisFactory().create(grid, [piece], 0);
     var result = gameController.moveRight();
@@ -47,7 +52,8 @@ QUnit.test("should not allow pieces to fall of the grid going right", function (
 });
 
 QUnit.test("should not allow pieces to fall of the grid going EAST (Part II)", function (assert) {
-    var piece = new LongBar(5, 5, 0);
+    var piece = new LongBar();
+    piece.place(5, 5, 0);
     var grid = new Grid(5, 5);
     var gameController = new TetrisFactory().create(grid, [piece], 0);
     var result = gameController.moveRight();
