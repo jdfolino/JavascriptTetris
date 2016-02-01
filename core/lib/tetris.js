@@ -10,6 +10,8 @@ module.exports = Tetris;
 function Tetris(grid, pieceQueue) {
     this.grid = grid;
     this.pieceQueue = pieceQueue;
+    this.gameOver = false;
+
     this.getNextPiece = function () {
         this.activePiece = this.pieceQueue.shift();
         this.pieceQueue.push(this.createRandomPiece(this.grid));
@@ -26,6 +28,12 @@ function Tetris(grid, pieceQueue) {
 
     this.level = function () {
         return Math.floor(this.linesCleared / 10);
+    };
+
+    this.updateGameOverStatus = function(){
+        if (this.squaresAlreadyOccupied(this.activePiece, 0, 0)) {
+            this.gameOver = true;
+        }
     };
 
     this.pieceHitsGround = function() {
@@ -75,6 +83,7 @@ function Tetris(grid, pieceQueue) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
             if (this.grid.rows[y + y_transformation][x + x_transformation] !== false) {
+                console.log(this.grid.rows[y + y_transformation][x + x_transformation]);
                 return true;
             }
         }
