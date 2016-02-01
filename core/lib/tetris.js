@@ -20,9 +20,6 @@ function Tetris(grid, pieceQueue) {
 
     this.createRandomPiece = function() {
         var piece = new PieceFactory().getPiece(this.grid);
-        if (this.squaresAlreadyOccupied(piece, 0, 0)) {
-            return false;
-        }
         return piece;
     };
 
@@ -31,7 +28,10 @@ function Tetris(grid, pieceQueue) {
     };
 
     this.updateGameOverStatus = function(){
-        if (this.squaresAlreadyOccupied(this.activePiece, 0, 0)) {
+        if (this.gameOver === true) { return; }
+        var activePieceClone = this.activePiece.clone();
+        activePieceClone.place(this.grid.x - 2, this.grid.y - 2, 180);
+        if (this.squaresAlreadyOccupied(activePieceClone, 0, 0)) {
             this.gameOver = true;
         }
     };
@@ -54,7 +54,9 @@ function Tetris(grid, pieceQueue) {
     };
 
     this.moveDown = function() {
-        return this.tryMove('DOWN');
+        var move = this.tryMove('DOWN');
+        this.updateGameOverStatus();
+        return move;
     };
 
     this.moveLeft = function() {
@@ -82,8 +84,8 @@ function Tetris(grid, pieceQueue) {
         for (var i = 0; i < coordinates.length; i++) {
             var x = coordinates[i][0];
             var y = coordinates[i][1];
-            if (this.grid.rows[y + y_transformation][x + x_transformation] !== false) {
-                console.log(this.grid.rows[y + y_transformation][x + x_transformation]);
+            var coordinate = this.grid.rows[y + y_transformation][x + x_transformation];
+            if (coordinate !== false) {
                 return true;
             }
         }

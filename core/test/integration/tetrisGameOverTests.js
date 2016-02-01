@@ -13,11 +13,10 @@ QUnit.test("it should flag the game as finished if a newly place piece cannot fi
         [true, true, true, true, true],
         [true, true, true, true, true],
         [true, true, true, true, true]];
-    var longBar = new LongBar(4, 0, 0);
-    var longBar2 = new LongBar(4, 0, 0);
+    var longBar = new LongBar();
+    var longBar2 = new LongBar();
     var gameController = new TetrisFactory().create(grid, [longBar, longBar2], 0);
     gameController.updateGameOverStatus();
-
     var result = gameController.gameOver;
     assert.equal(true, result);
 });

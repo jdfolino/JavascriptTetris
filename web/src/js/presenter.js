@@ -55,7 +55,7 @@ var main = function (uiFunctions, grid, starting_interval) {
         uiFunctions.clearPiece('#grid',that.controller);
         if (that.controller.moveDown() == false) {
             that.activePiece = that.controller.pieceHitsGround();
-            uiFunctions.renderGameOver(that.controller.activePiece, that.stats);
+            uiFunctions.renderGameOver(that.controller);
         }
         uiFunctions.drawAll(that.controller);
     }, 1000));
@@ -138,10 +138,9 @@ $(document).ready(function () {
             }
         },
 
-        renderGameOver: function(piece, stats) {
-            if (piece == false) {
+        renderGameOver: function(controller) {
+            if (controller.gameOver === true) {
                 alert('Game Over');
-                alert('clearInterval');
                 clearInterval(timeouts[0]);
             }
 
