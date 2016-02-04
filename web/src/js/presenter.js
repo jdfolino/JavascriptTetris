@@ -12,42 +12,59 @@ var main = function (uiFunctions, grid, starting_interval) {
     this.controller = new TetrisFactory().create();
     var that = this;
     this.controller.getNextPiece();
-    $(document).keydown(function (e) {
-        if (e.keyCode == 37) {
-            uiFunctions.clearPiece('#grid', that.controller);
-            that.controller.moveLeft();
-            uiFunctions.drawPiece('#grid', that.controller);
+
+    function moveLeft() {
+        uiFunctions.clearPiece('#grid', that.controller);
+        that.controller.moveLeft();
+        uiFunctions.drawPiece('#grid', that.controller);
+    }
+
+    function moveRight() {
+        uiFunctions.clearPiece('#grid', that.controller);
+        that.controller.moveRight();
+        uiFunctions.drawPiece('#grid', that.controller);
+    }
+
+    function moveDown() {
+        that.controller.score = that.controller.score + 1;
+        uiFunctions.clearPiece('#grid', that.controller);
+        if (that.controller.moveDown() == false) {
+            that.activePiece = that.controller.pieceHitsGround(that.activePiece);
         }
+        uiFunctions.drawAll(that.controller);
+    }
+
+    function rotate() {
+        uiFunctions.clearPiece('#grid', that.controller);
+        that.controller.rotateClockwise();
+        uiFunctions.drawPiece('#grid', that.controller);
+    }
+
+    $("#left_arrow").click(function(){ moveLeft(); });
+    $(document).keydown(function (e) {
+        if (e.keyCode == 37)
+            moveLeft();
         return false;
     });
 
+    $("#up_arrow").click(function(){ rotate(); });
     $(document).keydown(function (e) {
-        if (e.keyCode == 38) {
-            uiFunctions.clearPiece('#grid', that.controller);
-            that.controller.rotateClockwise();
-            uiFunctions.drawPiece('#grid', that.controller);
-        }
+        if (e.keyCode == 38)
+            rotate();
         return false;
     });
 
+    $("#right_arrow").click(function(){ moveRight(); });
     $(document).keydown(function (e) {
-        if (e.keyCode == 39) {
-            uiFunctions.clearPiece('#grid', that.controller);
-            that.controller.moveRight();
-            uiFunctions.drawPiece('#grid', that.controller);
-        }
+        if (e.keyCode == 39)
+            moveRight();
         return false;
     });
 
+    $("#down_arrow").click(function(){ moveDown(); });
     $(document).keydown(function (e) {
-        if (e.keyCode == 40) {
-            that.controller.score = that.controller.score + 1;
-            uiFunctions.clearPiece('#grid', that.controller);
-            if (that.controller.moveDown() == false) {
-                that.activePiece = that.controller.pieceHitsGround(that.activePiece);
-            }
-            uiFunctions.drawAll(that.controller);
-        }
+        if (e.keyCode == 40)
+            moveDown();
         return false;
     });
 
